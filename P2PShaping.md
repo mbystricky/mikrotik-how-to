@@ -18,7 +18,7 @@ add name="torrents" regexp="^(\x13bittorrent protocol|azver\x01$|get /scrape\?in
 /ip firewall filter
 add chain=forward action=add-src-to-address-list layer7-protocol=torrents src-address=192.168.11.0/24 address-list=torrent_hosts address-list-timeout=2m
 ```
-- Next, we will mark connections identified by out address list and public ports 
+- Next, we mark connections identified by previously created address list and public ports 
 ```
 /ip firewall mangle
 add chain=prerouting action=mark-connection new-connection-mark=Torrent protocol=tcp src-address-list=torrent_hosts dst-port=!0-1024,8291,5900,5800,3389,14147,5222,59905
